@@ -10,10 +10,21 @@
 			{
 				var firstRoll = BuildRoll.From(rawLine[i]);
 				var secondRoll = BuildRoll.From(rawLine[i+1]);
+				if (secondRoll.KnockedPins == 10)
+				{
+					secondRoll.KnockedPins -= firstRoll.KnockedPins;
+					line.AddFrame(new SpareFrame(firstRoll, secondRoll));
+					continue;
+				}
 				line.AddFrame(new Frame(firstRoll, secondRoll));
 			}
 
 			return line;
 		}
+	}
+
+	public class SpareFrame : Frame
+	{
+		public SpareFrame(Roll firstRoll, Roll secondRoll) : base(firstRoll, secondRoll) {}
 	}
 }

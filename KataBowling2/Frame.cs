@@ -2,8 +2,8 @@
 {
 	public class Frame
 	{
-		private Roll FirstRoll { get; }
-		private Roll SecondRoll { get; }
+		protected Roll FirstRoll { get; }
+		protected Roll SecondRoll { get; }
 
 		public Frame(Roll firstRoll, Roll secondRoll)
 		{
@@ -11,7 +11,7 @@
 			SecondRoll = secondRoll;
 		}
 
-		public int Score()
+		public virtual int Score()
 		{
 			return FirstRoll.KnockedPins + SecondRoll.KnockedPins;
 		}

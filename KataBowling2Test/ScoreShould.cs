@@ -32,6 +32,9 @@ namespace KataBowling2Test
 		{
 			var line = BuildLine.From("-/------------------");
 			line.Score().Should().Be(10);
+
+			line = BuildLine.From("1/------------------");
+			line.Score().Should().Be(10);
 		}
 	}
 }
