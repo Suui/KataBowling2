@@ -17,7 +17,7 @@
 
 				if (IsStrike())
 				{
-					AddStrikeFrame(FirstRoll(), i);
+					AddStrikeFrame();
 					i -= 1;
 				} else if (IsSpare())
 					AddSpareFrame();
@@ -47,10 +47,11 @@
 			Line.AddFrame(new SpareFrame(FirstRoll(), secondRoll));
 		}
 
-		private static void AddStrikeFrame(Roll firstRoll, int index)
+		private static void AddStrikeFrame()
 		{
-			firstRoll.NextRoll = BuildRoll.From(RawLine[index + 1]);
-			firstRoll.NextRoll.NextRoll = BuildRoll.From(RawLine[index + 2]);
+			var firstRoll = FirstRoll();
+			firstRoll.NextRoll = BuildRoll.From(RawLine[Index + 1]);
+			firstRoll.NextRoll.NextRoll = BuildRoll.From(RawLine[Index + 2]);
 			Line.AddFrame(new StrikeFrame(firstRoll));
 		}
 	}
