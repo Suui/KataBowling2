@@ -4,6 +4,7 @@ namespace KataBowling2
 	{
 		public static Roll From(char rawRoll)
 		{
+			if (rawRoll == '/') return new Roll(10);
 			if (rawRoll == '-') return new Roll(0);
 			return new Roll(int.Parse(rawRoll.ToString()));
 		}

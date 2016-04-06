@@ -26,5 +26,12 @@ namespace KataBowling2Test
 			var line = BuildLine.From("11--1-1-------------");
 			line.Score().Should().Be(4);
 		}
+
+		[Test]
+		public void calculate_the_score_for_spare_frames()
+		{
+			var line = BuildLine.From("-/------------------");
+			line.Score().Should().Be(10);
+		}
 	}
 }
