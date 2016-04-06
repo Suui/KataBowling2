@@ -11,21 +11,17 @@
 			Line = new Line();
 			RawLine = rawLine;
 
-			for (var i = 0; i < rawLine.Length; i += 2)
+			for (Index = 0; Index < RawLine.Length; Index += 2)
 			{
-				Index = i;
-
 				if (IsStrike())
-				{
 					AddStrikeFrame();
-					i -= 1;
-				} else if (IsSpare())
+				else if (IsSpare())
 					AddSpareFrame();
 				else
 					AddFrame();
 
-				if (IsStrike() && i + 4 == rawLine.Length) break;
-				if (i + 3 == rawLine.Length) break;
+				if (BuildRoll.From(RawLine[Index + 1]).KnockedPins == 10 && Index + 4 == rawLine.Length) break;
+				if (Index + 3 == rawLine.Length) break;
 			}
 
 			return Line;
@@ -58,6 +54,7 @@
 			firstRoll.NextRoll = BuildRoll.From(RawLine[Index + 1]);
 			firstRoll.NextRoll.NextRoll = BuildRoll.From(RawLine[Index + 2]);
 			Line.AddFrame(new StrikeFrame(firstRoll));
+			Index -= 1;
 		}
 	}
 }
