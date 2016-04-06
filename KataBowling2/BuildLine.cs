@@ -15,20 +15,27 @@
 				var firstRoll = BuildRoll.From(rawLine[i]);
 				var secondRoll = BuildRoll.From(rawLine[i+1]);
 
-				if (firstRoll.KnockedPins == 10)
+				if (IsStrike(firstRoll))
 				{
-					Line.AddFrame(new StrikeFrame(firstRoll));
+					AddStrikeFrame(firstRoll);
 					i -= 1;
-					continue;
-				}
-
-				if (IsSpare(secondRoll))
+				} else if (IsSpare(secondRoll))
 					AddSpareFrame(secondRoll, firstRoll, i);
 				else
 					Line.AddFrame(new Frame(firstRoll, secondRoll));
 			}
 
 			return Line;
+		}
+
+		private static void AddStrikeFrame(Roll firstRoll)
+		{
+			Line.AddFrame(new StrikeFrame(firstRoll));
+		}
+
+		private static bool IsStrike(Roll firstRoll)
+		{
+			return firstRoll.KnockedPins == 10;
 		}
 
 		private static void AddSpareFrame(Roll secondRoll, Roll firstRoll, int index)
