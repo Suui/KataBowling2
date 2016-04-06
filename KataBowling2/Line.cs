@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 
 namespace KataBowling2
@@ -9,11 +10,6 @@ namespace KataBowling2
 
 		public void AddFrame(MinimumFrame frame) => Frames.Add(frame);
 
-		public virtual int Score()
-		{
-			var score = 0;
-			Frames.ForEach(frame => score += frame.Score());
-			return score;
-		}
+		public virtual int Score() => Frames.Sum(frame => frame.Score());
 	}
 }
