@@ -4,6 +4,7 @@
 	{
 		private static string RawLine { get; set; }
 		private static Line Line { get; set; }
+		public static int Index { get; set; }
 
 		public static Line From(string rawLine)
 		{
@@ -12,8 +13,9 @@
 
 			for (var i = 0; i < rawLine.Length; i += 2)
 			{
-				var firstRoll = FirstRoll(i);
-				var secondRoll = SecondRoll(i);
+				Index = i;
+				var firstRoll = FirstRoll();
+				var secondRoll = SecondRoll();
 
 				if (IsStrike(firstRoll))
 				{
@@ -31,9 +33,9 @@
 			return Line;
 		}
 
-		private static Roll FirstRoll(int index) => BuildRoll.From(RawLine[index]);
+		private static Roll FirstRoll() => BuildRoll.From(RawLine[Index]);
 
-		private static Roll SecondRoll(int index) => BuildRoll.From(RawLine[index + 1]);
+		private static Roll SecondRoll() => BuildRoll.From(RawLine[Index + 1]);
 
 		private static bool IsSpare(Roll secondRoll) => secondRoll.KnockedPins == 10;
 
