@@ -9,7 +9,7 @@ namespace KataBowling2
 
 		public void AddFrame(Frame frame) => Frames.Add(frame);
 
-		public int Score()
+		public virtual int Score()
 		{
 			var score = 0;
 			Frames.ForEach(frame => score += frame.Score());

@@ -3,9 +3,7 @@ using KataBowling2;
 using NUnit.Framework;
 
 /* TODO
-	- "-/------------------" => 10
-	- "1/------------------" => 10
-	- "-/1-----------------" => 11
+	- "1/1-----------------" => 12
 	- "X------------------" => 10
 	- "X1-----------------" => 11
 	- "X11----------------" => 12
@@ -35,6 +33,9 @@ namespace KataBowling2Test
 
 			line = BuildLine.From("1/------------------");
 			line.Score().Should().Be(10);
+
+			line = BuildLine.From("1/1-----------------");
+			line.Score().Should().Be(12);
 		}
 	}
 }
