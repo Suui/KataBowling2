@@ -20,7 +20,7 @@
 					AddStrikeFrame(FirstRoll(), i);
 					i -= 1;
 				} else if (IsSpare())
-					AddSpareFrame(SecondRoll(), FirstRoll(), i);
+					AddSpareFrame();
 				else
 					Line.AddFrame(new Frame(FirstRoll(), SecondRoll()));
 
@@ -39,11 +39,12 @@
 
 		private static bool IsStrike() => FirstRoll().KnockedPins == 10;
 
-		private static void AddSpareFrame(Roll secondRoll, Roll firstRoll, int index)
+		private static void AddSpareFrame()
 		{
-			secondRoll.NextRoll = BuildRoll.From(RawLine[index + 2]);
-			secondRoll.KnockedPins -= firstRoll.KnockedPins;
-			Line.AddFrame(new SpareFrame(firstRoll, secondRoll));
+			var secondRoll = SecondRoll();
+			secondRoll.NextRoll = BuildRoll.From(RawLine[Index + 2]);
+			secondRoll.KnockedPins -= FirstRoll().KnockedPins;
+			Line.AddFrame(new SpareFrame(FirstRoll(), secondRoll));
 		}
 
 		private static void AddStrikeFrame(Roll firstRoll, int index)
