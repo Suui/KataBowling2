@@ -4,9 +4,8 @@ namespace KataBowling2
 	{
 		public SpareFrame(Roll firstRoll, Roll secondRoll) : base(firstRoll, secondRoll) {}
 
-		public override int Score()
-		{
-			return base.Score() + SecondRoll.NextRoll.KnockedPins;
-		}
+		public override int Score() => base.Score() + NextRoll();
+
+		private int NextRoll() => SecondRoll.NextRoll.KnockedPins;
 	}
 }
