@@ -5,9 +5,9 @@ namespace KataBowling2
 {
 	public class Line
 	{
-		private List<Frame> Frames { get; } = new List<Frame>();
+		private List<MinimumFrame> Frames { get; } = new List<MinimumFrame>();
 
-		public void AddFrame(Frame frame) => Frames.Add(frame);
+		public void AddFrame(MinimumFrame frame) => Frames.Add(frame);
 
 		public virtual int Score()
 		{

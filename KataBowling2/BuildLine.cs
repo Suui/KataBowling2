@@ -50,12 +50,4 @@
 			return secondRoll.KnockedPins == 10;
 		}
 	}
-
-	public class StrikeFrame : Frame
-	{
-		public StrikeFrame(Roll firstRoll) : base(firstRoll, new Roll(0))
-		{
-			
-		}
-	}
 }

@@ -1,19 +1,17 @@
 ﻿namespace KataBowling2
 {
-	public class Frame
+	public class Frame : MinimumFrame
 	{
-		protected Roll FirstRoll { get; }
 		protected Roll SecondRoll { get; }
 
-		public Frame(Roll firstRoll, Roll secondRoll)
+		public Frame(Roll firstRoll, Roll secondRoll) : base(firstRoll)
 		{
-			FirstRoll = firstRoll;
 			SecondRoll = secondRoll;
 		}
 
-		public virtual int Score()
+		public override int Score()
 		{
-			return FirstRoll.KnockedPins + SecondRoll.KnockedPins;
+			return base.Score() + SecondRoll.KnockedPins;
 		}
 	}
 }
