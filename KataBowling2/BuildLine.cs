@@ -15,16 +15,16 @@
 			{
 				Index = i;
 
-				if (IsStrike(FirstRoll()))
+				if (IsStrike())
 				{
 					AddStrikeFrame(FirstRoll(), i);
 					i -= 1;
-				} else if (IsSpare(SecondRoll()))
+				} else if (IsSpare())
 					AddSpareFrame(SecondRoll(), FirstRoll(), i);
 				else
 					Line.AddFrame(new Frame(FirstRoll(), SecondRoll()));
 
-				if (IsStrike(FirstRoll()) && i + 4 == rawLine.Length) break;
+				if (IsStrike() && i + 4 == rawLine.Length) break;
 				if (i + 3 == rawLine.Length) break;
 			}
 
@@ -35,9 +35,9 @@
 
 		private static Roll SecondRoll() => BuildRoll.From(RawLine[Index + 1]);
 
-		private static bool IsSpare(Roll secondRoll) => secondRoll.KnockedPins == 10;
+		private static bool IsSpare() => SecondRoll().KnockedPins == 10;
 
-		private static bool IsStrike(Roll firstRoll) => firstRoll.KnockedPins == 10;
+		private static bool IsStrike() => FirstRoll().KnockedPins == 10;
 
 		private static void AddSpareFrame(Roll secondRoll, Roll firstRoll, int index)
 		{
