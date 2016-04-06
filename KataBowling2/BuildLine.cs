@@ -2,25 +2,38 @@
 {
 	public class BuildLine
 	{
+		private static string RawLine { get; set; }
+		private static Line Line { get; set; }
+
 		public static Line From(string rawLine)
 		{
-			var line = new Line();
+			Line = new Line();
+			RawLine = rawLine;
 
 			for (var i = 0; i < rawLine.Length; i += 2)
 			{
 				var firstRoll = BuildRoll.From(rawLine[i]);
 				var secondRoll = BuildRoll.From(rawLine[i+1]);
-				if (secondRoll.KnockedPins == 10)
-				{
-					secondRoll.Next = BuildRoll.From(rawLine[i + 2]);
-					secondRoll.KnockedPins -= firstRoll.KnockedPins;
-					line.AddFrame(new SpareFrame(firstRoll, secondRoll));
-					continue;
-				}
-				line.AddFrame(new Frame(firstRoll, secondRoll));
+
+				if (IsSpare(secondRoll))
+					AddSpareFrame(secondRoll, firstRoll, i);
+				else
+					Line.AddFrame(new Frame(firstRoll, secondRoll));
 			}
 
-			return line;
+			return Line;
+		}
+
+		private static void AddSpareFrame(Roll secondRoll, Roll firstRoll, int index)
+		{
+			secondRoll.Next = BuildRoll.From(RawLine[index + 2]);
+			secondRoll.KnockedPins -= firstRoll.KnockedPins;
+			Line.AddFrame(new SpareFrame(firstRoll, secondRoll));
+		}
+
+		private static bool IsSpare(Roll secondRoll)
+		{
+			return secondRoll.KnockedPins == 10;
 		}
 	}
 }
