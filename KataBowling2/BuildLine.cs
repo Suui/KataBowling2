@@ -31,6 +31,7 @@
 		private static void AddStrikeFrame(Roll firstRoll, int index)
 		{
 			firstRoll.Next = BuildRoll.From(RawLine[index + 1]);
+			firstRoll.Next.Next = BuildRoll.From(RawLine[index + 2]);
 			Line.AddFrame(new StrikeFrame(firstRoll));
 		}
 

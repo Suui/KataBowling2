@@ -6,7 +6,7 @@
 
 		public override int Score()
 		{
-			return base.Score() + FirstRoll.Next.KnockedPins;
+			return base.Score() + FirstRoll.Next.KnockedPins + FirstRoll.Next.Next.KnockedPins ;
 		}
 	}
 }
