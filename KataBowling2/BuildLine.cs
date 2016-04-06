@@ -31,11 +31,9 @@
 			return Line;
 		}
 
-		private static void AddStrikeFrame(Roll firstRoll, int index)
+		private static bool IsSpare(Roll secondRoll)
 		{
-			firstRoll.NextRoll = BuildRoll.From(RawLine[index + 1]);
-			firstRoll.NextRoll.NextRoll = BuildRoll.From(RawLine[index + 2]);
-			Line.AddFrame(new StrikeFrame(firstRoll));
+			return secondRoll.KnockedPins == 10;
 		}
 
 		private static bool IsStrike(Roll firstRoll)
@@ -50,9 +48,11 @@
 			Line.AddFrame(new SpareFrame(firstRoll, secondRoll));
 		}
 
-		private static bool IsSpare(Roll secondRoll)
+		private static void AddStrikeFrame(Roll firstRoll, int index)
 		{
-			return secondRoll.KnockedPins == 10;
+			firstRoll.NextRoll = BuildRoll.From(RawLine[index + 1]);
+			firstRoll.NextRoll.NextRoll = BuildRoll.From(RawLine[index + 2]);
+			Line.AddFrame(new StrikeFrame(firstRoll));
 		}
 	}
 }
