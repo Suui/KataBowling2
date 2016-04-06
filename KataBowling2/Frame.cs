@@ -9,9 +9,6 @@
 			SecondRoll = secondRoll;
 		}
 
-		public override int Score()
-		{
-			return base.Score() + SecondRoll.KnockedPins;
-		}
+		public override int Score() => base.Score() + SecondRoll.KnockedPins;
 	}
 }
