@@ -10,7 +10,11 @@
 		{
 			Line = new Line();
 			RawLine = rawLine;
+			return BuiltLine();
+		}
 
+		private static Line BuiltLine()
+		{
 			for (Index = 0; Index < RawLine.Length; Index += 2)
 			{
 				if (IsStrike())
@@ -20,8 +24,7 @@
 				else
 					AddFrame();
 
-				if (BuildRoll.From(RawLine[Index + 1]).KnockedPins == 10 && Index + 4 == rawLine.Length) break;
-				if (Index + 3 == rawLine.Length) break;
+				if (ThereAreNoMoreFrames()) break;
 			}
 
 			return Line;
@@ -55,6 +58,13 @@
 			firstRoll.NextRoll.NextRoll = BuildRoll.From(RawLine[Index + 2]);
 			Line.AddFrame(new StrikeFrame(firstRoll));
 			Index -= 1;
+		}
+
+		private static bool ThereAreNoMoreFrames()
+		{
+			if (BuildRoll.From(RawLine[Index + 1]).KnockedPins == 10 && Index + 4 == RawLine.Length) return true;
+			if (Index + 3 == RawLine.Length) return true;
+			return false;
 		}
 	}
 }
