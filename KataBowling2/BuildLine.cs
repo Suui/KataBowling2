@@ -17,7 +17,7 @@
 
 				if (IsStrike(firstRoll))
 				{
-					AddStrikeFrame(firstRoll);
+					AddStrikeFrame(firstRoll, i);
 					i -= 1;
 				} else if (IsSpare(secondRoll))
 					AddSpareFrame(secondRoll, firstRoll, i);
@@ -28,8 +28,9 @@
 			return Line;
 		}
 
-		private static void AddStrikeFrame(Roll firstRoll)
+		private static void AddStrikeFrame(Roll firstRoll, int index)
 		{
+			firstRoll.Next = BuildRoll.From(RawLine[index + 1]);
 			Line.AddFrame(new StrikeFrame(firstRoll));
 		}
 

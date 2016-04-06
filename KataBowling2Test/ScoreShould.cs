@@ -3,7 +3,6 @@ using KataBowling2;
 using NUnit.Framework;
 
 /* TODO
-	- "X------------------" => 10
 	- "X1-----------------" => 11
 	- "X11----------------" => 12
 	- "11111111111111111111" => 20
@@ -42,6 +41,9 @@ namespace KataBowling2Test
 		{
 			var line = BuildLine.From("X------------------");
 			line.Score().Should().Be(10);
+
+			line = BuildLine.From("X1-----------------");
+			line.Score().Should().Be(12);
 		}
 	}
 }
