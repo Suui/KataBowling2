@@ -62,9 +62,17 @@
 
 		private static bool ThereAreNoMoreFrames()
 		{
-			if (BuildRoll.From(RawLine[Index + 1]).KnockedPins == 10 && Index + 4 == RawLine.Length) return true;
-			if (Index + 3 == RawLine.Length) return true;
-			return false;
+			return ThereIsAStrikeInTheLastFrame() || ThereIsASpareInTheLastFrame();
+		}
+
+		private static bool ThereIsASpareInTheLastFrame()
+		{
+			return Index + 3 == RawLine.Length;
+		}
+
+		private static bool ThereIsAStrikeInTheLastFrame()
+		{
+			return BuildRoll.From(RawLine[Index + 1]).KnockedPins == 10 && Index + 4 == RawLine.Length;
 		}
 	}
 }
