@@ -6,6 +6,6 @@
 
 		public override int Score() => base.Score() + TwoNextRolls();
 
-		private int TwoNextRolls() => FirstRoll.Next.KnockedPins + FirstRoll.Next.Next.KnockedPins;
+		private int TwoNextRolls() => FirstRoll.NextRoll.KnockedPins + FirstRoll.NextRoll.NextRoll.KnockedPins;
 	}
 }

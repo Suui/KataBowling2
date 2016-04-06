@@ -33,8 +33,8 @@
 
 		private static void AddStrikeFrame(Roll firstRoll, int index)
 		{
-			firstRoll.Next = BuildRoll.From(RawLine[index + 1]);
-			firstRoll.Next.Next = BuildRoll.From(RawLine[index + 2]);
+			firstRoll.NextRoll = BuildRoll.From(RawLine[index + 1]);
+			firstRoll.NextRoll.NextRoll = BuildRoll.From(RawLine[index + 2]);
 			Line.AddFrame(new StrikeFrame(firstRoll));
 		}
 
@@ -45,7 +45,7 @@
 
 		private static void AddSpareFrame(Roll secondRoll, Roll firstRoll, int index)
 		{
-			secondRoll.Next = BuildRoll.From(RawLine[index + 2]);
+			secondRoll.NextRoll = BuildRoll.From(RawLine[index + 2]);
 			secondRoll.KnockedPins -= firstRoll.KnockedPins;
 			Line.AddFrame(new SpareFrame(firstRoll, secondRoll));
 		}

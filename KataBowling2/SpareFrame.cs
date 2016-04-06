@@ -6,7 +6,7 @@ namespace KataBowling2
 
 		public override int Score()
 		{
-			return base.Score() + SecondRoll.Next.KnockedPins;
+			return base.Score() + SecondRoll.NextRoll.KnockedPins;
 		}
 	}
 }
