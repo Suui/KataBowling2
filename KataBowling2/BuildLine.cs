@@ -22,7 +22,7 @@
 				} else if (IsSpare())
 					AddSpareFrame();
 				else
-					Line.AddFrame(new Frame(FirstRoll(), SecondRoll()));
+					AddFrame();
 
 				if (IsStrike() && i + 4 == rawLine.Length) break;
 				if (i + 3 == rawLine.Length) break;
@@ -38,6 +38,11 @@
 		private static bool IsSpare() => SecondRoll().KnockedPins == 10;
 
 		private static bool IsStrike() => FirstRoll().KnockedPins == 10;
+
+		private static void AddFrame()
+		{
+			Line.AddFrame(new Frame(FirstRoll(), SecondRoll()));
+		}
 
 		private static void AddSpareFrame()
 		{
