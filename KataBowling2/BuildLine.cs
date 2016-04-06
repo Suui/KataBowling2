@@ -14,19 +14,17 @@
 			for (var i = 0; i < rawLine.Length; i += 2)
 			{
 				Index = i;
-				var firstRoll = FirstRoll();
-				var secondRoll = SecondRoll();
 
-				if (IsStrike(firstRoll))
+				if (IsStrike(FirstRoll()))
 				{
-					AddStrikeFrame(firstRoll, i);
+					AddStrikeFrame(FirstRoll(), i);
 					i -= 1;
-				} else if (IsSpare(secondRoll))
-					AddSpareFrame(secondRoll, firstRoll, i);
+				} else if (IsSpare(SecondRoll()))
+					AddSpareFrame(SecondRoll(), FirstRoll(), i);
 				else
-					Line.AddFrame(new Frame(firstRoll, secondRoll));
+					Line.AddFrame(new Frame(FirstRoll(), SecondRoll()));
 
-				if (IsStrike(firstRoll) && i + 4 == rawLine.Length) break;
+				if (IsStrike(FirstRoll()) && i + 4 == rawLine.Length) break;
 				if (i + 3 == rawLine.Length) break;
 			}
 
