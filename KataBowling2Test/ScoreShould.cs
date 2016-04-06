@@ -3,7 +3,6 @@ using KataBowling2;
 using NUnit.Framework;
 
 /* TODO
-	- "1/1-----------------" => 12
 	- "X------------------" => 10
 	- "X1-----------------" => 11
 	- "X11----------------" => 12
@@ -36,6 +35,13 @@ namespace KataBowling2Test
 
 			line = BuildLine.From("1/1-----------------");
 			line.Score().Should().Be(12);
+		}
+
+		[Test]
+		public void calculate_the_score_for_strike_frames()
+		{
+			var line = BuildLine.From("X------------------");
+			line.Score().Should().Be(10);
 		}
 	}
 }
