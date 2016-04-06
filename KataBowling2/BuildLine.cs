@@ -31,15 +31,9 @@
 			return Line;
 		}
 
-		private static bool IsSpare(Roll secondRoll)
-		{
-			return secondRoll.KnockedPins == 10;
-		}
+		private static bool IsSpare(Roll secondRoll) => secondRoll.KnockedPins == 10;
 
-		private static bool IsStrike(Roll firstRoll)
-		{
-			return firstRoll.KnockedPins == 10;
-		}
+		private static bool IsStrike(Roll firstRoll) => firstRoll.KnockedPins == 10;
 
 		private static void AddSpareFrame(Roll secondRoll, Roll firstRoll, int index)
 		{
