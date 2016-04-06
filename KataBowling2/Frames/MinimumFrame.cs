@@ -1,4 +1,4 @@
-﻿namespace KataBowling2
+﻿namespace KataBowling2.Frames
 {
 	public class MinimumFrame
 	{

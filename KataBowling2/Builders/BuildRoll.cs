@@ -1,4 +1,4 @@
-namespace KataBowling2
+namespace KataBowling2.Builders
 {
 	public class BuildRoll
 	{

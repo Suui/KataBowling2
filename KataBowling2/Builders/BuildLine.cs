@@ -1,4 +1,7 @@
-﻿namespace KataBowling2
+﻿using KataBowling2.Frames;
+
+
+namespace KataBowling2.Builders
 {
 	public class BuildLine
 	{

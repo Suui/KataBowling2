@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using KataBowling2;
+using KataBowling2.Builders;
 using NUnit.Framework;
 
 
