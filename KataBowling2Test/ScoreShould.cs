@@ -44,13 +44,6 @@ namespace KataBowling2Test
 		[Test]
 		public void calculate_acceptance_scores()
 		{
-			/*
-				- "11111111111111111111" => 20
-				- "9-9-9-9-9-9-9-9-9-9-" => 90
-				- "5/5/5/5/5/5/5/5/5/5/5" => 150
-				- "XXXXXXXXXXXX" => 300
-			*/
-
 			var line = BuildLine.From("11111111111111111111");
 			line.Score().Should().Be(20);
 
