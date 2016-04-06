@@ -2,13 +2,6 @@
 using KataBowling2;
 using NUnit.Framework;
 
-/* TODO
-	- "X11----------------" => 14
-	- "11111111111111111111" => 20
-	- "9-9-9-9-9-9-9-9-9-9-" => 90
-	- "5/5/5/5/5/5/5/5/5/5/5" => 150
-	- "XXXXXXXXXXXX" => 300
-*/
 
 namespace KataBowling2Test
 {
@@ -46,6 +39,29 @@ namespace KataBowling2Test
 
 			line = BuildLine.From("X11----------------");
 			line.Score().Should().Be(14);
+		}
+
+		[Test]
+		public void calculate_acceptance_scores()
+		{
+			/*
+				- "11111111111111111111" => 20
+				- "9-9-9-9-9-9-9-9-9-9-" => 90
+				- "5/5/5/5/5/5/5/5/5/5/5" => 150
+				- "XXXXXXXXXXXX" => 300
+			*/
+
+			var line = BuildLine.From("11111111111111111111");
+			line.Score().Should().Be(20);
+
+			line = BuildLine.From("9-9-9-9-9-9-9-9-9-9-");
+			line.Score().Should().Be(90);
+
+			line = BuildLine.From("5/5/5/5/5/5/5/5/5/5/5");
+			line.Score().Should().Be(150);
+
+			line = BuildLine.From("XXXXXXXXXXXX");
+			line.Score().Should().Be(300);
 		}
 	}
 }

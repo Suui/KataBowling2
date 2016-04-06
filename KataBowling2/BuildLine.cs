@@ -23,6 +23,9 @@
 					AddSpareFrame(secondRoll, firstRoll, i);
 				else
 					Line.AddFrame(new Frame(firstRoll, secondRoll));
+
+				if (IsStrike(firstRoll) && i + 4 == rawLine.Length) break;
+				if (i + 3 == rawLine.Length) break;
 			}
 
 			return Line;
